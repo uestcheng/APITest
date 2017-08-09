@@ -14,12 +14,18 @@ class Logger(object):
         self.level = log_level
         self.level_type = ("DEBUG", "CRITICAL", "WARNING")
 
-    def info_log(self, msg):
+    def _info_log(self, msg):
         """log common info of test"""
-        if self.level not in self.level_type:
-            logging.basicConfig(self.fmt)
-            getattr(logging, self.level.lower())(msg)
+        logging.basicConfig(self.fmt)
+        getattr(logging, "debug")(msg)
 
-    def error_log(self, msg):
+    def _error_log(self, msg):
         """log error info of test"""
-        pass
+        logging.basicConfig(self.fmt)
+        getattr(logging, "warning")(msg)
+
+    def logger(self, level, msg):
+        if level in self.level_type:
+            self._info_log(msg)
+        else:
+            self._error_log(msg)
