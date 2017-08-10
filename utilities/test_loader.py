@@ -25,3 +25,6 @@ class TestLoader(object):
             else:
                 continue
 
+    def func_for_push:
+        pass
+
